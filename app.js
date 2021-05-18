@@ -2,10 +2,12 @@ const express = require("express");
 const https = require("https");
 const bodyParser = require("body-parser");
 
-require('dotenv').config();
+
+
 const app = express();
 
-const apikey = process.env.API_KEY;
+const dotenv = require('dotenv').config();
+const api_key = process.env.API_KEY;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
@@ -19,7 +21,7 @@ app.post("/", function(req, res) {
     const query = req.body.cityName;
 
     const units = "metric";
-    const url = "https://api.openweathermap.org/data/2.5/weather?q=" + query + "&appid=" + apikey + "&units=" + units;
+    const url = "https://api.openweathermap.org/data/2.5/weather?q=" + query + "&appid=" + api_key + "&units=" + units;
     https.get(url, function(response) {
 
 
@@ -33,7 +35,7 @@ app.post("/", function(req, res) {
 
                 res.render("index", { description: Description, temp: temp, pic: imgURL });
             } else {
-                res.render("index", { description: "Sorry we can't find it :(", temp: "", pic: "" });
+                res.render("index", { description: "Sorry we can't find " + query + " :(", temp: "", pic: "" });
             }
 
         });
