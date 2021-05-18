@@ -1,1 +1,1 @@
-ECHO is on.
+web: node app.js
