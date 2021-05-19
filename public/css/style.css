@@ -61,7 +61,7 @@ input::placeholder {
 
 @media (max-width:830px) {
     .box {
-        height: 60%;
+        height: 80%;
         width: 95%;
     }
     input[type=text] {
